@@ -138,73 +138,73 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Login");
         }
 
-        [HttpGet]
+        //[HttpGet]
+        ////[Authorize(Roles = "Admin")]
+        //public IActionResult AddRole()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        ////[Authorize(Roles = "Admin")]
+        //public async Task<IActionResult> AddRole(Role role)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (await _roleManager.RoleExistsAsync(role.RoleName))
+        //        {
+        //            ModelState.AddModelError("RoleName", "Already Exists");
+        //            return View(role);
+        //        }
+        //        var result = await _roleManager.CreateAsync(new IdentityRole() { Name = role.RoleName });
+        //        if (result.Succeeded)
+        //        {
+        //            return RedirectToAction("Dashboard", "Home");
+        //        }
+        //        ModelState.AddModelError("Register", String.Join(" ", result.Errors.Select(x => x.Description)));
+        //        return View(role);
+        //    }
+        //    return View();
+        //}
+
+        //[HttpGet]
         //[Authorize(Roles = "Admin")]
-        public IActionResult AddRole()
-        {
-            return View();
-        }
+        //public IActionResult AddDepartment()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
+        //[HttpPost]
         //[Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddRole(Role role)
-        {
-            if (ModelState.IsValid)
-            {
-                if (await _roleManager.RoleExistsAsync(role.RoleName))
-                {
-                    ModelState.AddModelError("RoleName", "Already Exists");
-                    return View(role);
-                }
-                var result = await _roleManager.CreateAsync(new IdentityRole() { Name = role.RoleName });
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Dashboard", "Home");
-                }
-                ModelState.AddModelError("Register", String.Join(" ", result.Errors.Select(x => x.Description)));
-                return View(role);
-            }
-            return View();
-        }
+        //public async Task<IActionResult> AddDepartment(Department dept)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var test = await _userContext.Department.FirstOrDefaultAsync(u => u.DepartmentName == dept.DepartmentName);
+        //        if (test != null)
+        //        {
+        //            ModelState.AddModelError("DepartmentName", "Already Exists");
+        //            return View(dept);
+        //        }
+        //        var result = await _userContext.Department.AddAsync(dept);
+        //        _userContext.SaveChanges();
+        //        return RedirectToAction("Dashboard", "Home");
+        //    }
+        //    return View();
+        //}
 
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public IActionResult AddDepartment()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //[Authorize(Roles = "Admin")]
+        //public IActionResult AddRoleToUser()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddDepartment(Department dept)
-        {
-            if (ModelState.IsValid)
-            {
-                var test = await _userContext.Department.FirstOrDefaultAsync(u => u.DepartmentName == dept.DepartmentName);
-                if (test != null)
-                {
-                    ModelState.AddModelError("DepartmentName", "Already Exists");
-                    return View(dept);
-                }
-                var result = await _userContext.Department.AddAsync(dept);
-                _userContext.SaveChanges();
-                return RedirectToAction("Dashboard", "Home");
-            }
-            return View();
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public IActionResult AddRoleToUser()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddRoleToUser(string email)
-        {
-            return View();
-        }
+        //[HttpPost]
+        //[Authorize(Roles = "Admin")]
+        //public async Task<IActionResult> AddRoleToUser(string email)
+        //{
+        //    return View();
+        //}
     }
 }

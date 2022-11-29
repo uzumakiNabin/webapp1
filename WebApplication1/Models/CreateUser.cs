@@ -28,9 +28,9 @@ namespace WebApplication1.Models
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
-        public string Role { get; set; }
+        public string RoleName { get; set; }
 
-        public string Department { get; set; }
+        public string DepartmentName { get; set; }
 
     }
 }
