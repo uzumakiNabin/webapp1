@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to NLIC Digital Library</h1>
+    <h3>Admin Actions</h3>
+    @Html.ActionLink("Create User", "CreateUser", "Admin")
+    @Html.ActionLink("Create Department", "CreateDepartment", "Admin")
+    @Html.ActionLink("Create Role", "CreateRole", "Admin")
+    @Html.ActionLink("Assign user to department", "AssignDepartment", "Admin")
+    @Html.ActionLink("Assign user to role", "AssignRole", "Admin")
+</div>

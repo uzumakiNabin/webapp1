@@ -1,0 +1,45 @@
+﻿@model WebApplication1.Models.Register
+
+@{
+    ViewData["Title"] = "Register Page";
+}
+<div class="card-title">
+    <h3>Login</h3>
+</div>
+@using (Html.BeginForm("Register", "User", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Email, "Email", new {@class = "form-label"})
+        @Html.TextBoxFor(m => m.Email, new {@class = "form-control", @placeholder = "Enter your email", @type="email"})
+        @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.UserName, "Username", new {@class = "form-label"})
+        @Html.TextBoxFor(m => m.UserName, new {@class = "form-control", @placeholder = "Choose your username"})
+        @Html.ValidationMessageFor(m => m.UserName, "", new {@class = "text-danger"})
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Password, "Password", new {@class = "form-label"})
+        @Html.PasswordFor(m => m.Password, new {@class = "form-control", @placeholder = "Choose your password"})
+        @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.ConfirmPassword, "Confirm Password", new {@class = "form-label"})
+        @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control", @placeholder = "Confirm password"})
+        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new {@class = "text-danger"})
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Department, "Department", new {@class = "form-label"})
+        @Html.TextBoxFor(m => m.Department, new {@class = "form-control", @placeholder = "Department Name"})
+        @Html.ValidationMessageFor(m => m.Department, "", new {@class = "text-danger"})
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+
+    <div class="mb-3">
+        Already have an account? @Html.ActionLink("Login here!", "Login", "User")
+    </div>
+
+}
