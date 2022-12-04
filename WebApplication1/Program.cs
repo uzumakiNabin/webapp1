@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging.Signing;
 using WebApplication1.Data;
+using WebApplication1.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
     options.SignIn.RequireConfirmedEmail = false;
 });
+builder.Services.Configure<ApplicationConfigurations>(builder.Configuration.GetSection("ApplicationConfigurations"));
 
 builder.Services.ConfigureApplicationCookie(options =>
 {

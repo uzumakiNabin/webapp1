@@ -1,4 +1,4 @@
-﻿@model WebApplication1.Models.CreateRole
+﻿@model WebApplication1.Models.Role
 
 @{
     ViewData["Title"] = "Create Role";
@@ -17,11 +17,6 @@
             @Html.LabelFor(m => m.RoleName, "Role Name", new {@class = "form-label"})
             @Html.TextBoxFor(m => m.RoleName, new {@class = "form-control", @placeholder = "Enter Role Name"})
             @Html.ValidationMessageFor(m => m.RoleName, "", new {@class = "text-danger"})
-        </div>
-        <div class="mb-3">
-            @Html.LabelFor(m => m.Description, "Description", new {@class = "form-label"})
-            @Html.TextBoxFor(m => m.Description, new {@class = "form-control", @placeholder = "Description about this role"})
-            @Html.ValidationMessageFor(m => m.Description, "", new {@class = "text-danger"})
         </div>
 
         <button type="submit" class="btn btn-primary">Add</button>

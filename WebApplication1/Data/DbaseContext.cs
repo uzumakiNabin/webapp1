@@ -11,6 +11,6 @@ namespace WebApplication1.Data
         {
         }
 
-        public DbSet<CreateDepartment>? Department {get; set;}
+        public DbSet<Department>? Departments {get; set;}
     }
 }

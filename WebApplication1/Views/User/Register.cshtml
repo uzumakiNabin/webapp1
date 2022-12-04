@@ -31,11 +31,6 @@
         @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control", @placeholder = "Confirm password"})
         @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new {@class = "text-danger"})
     </div>
-    <div class="mb-3">
-        @Html.LabelFor(m => m.Department, "Department", new {@class = "form-label"})
-        @Html.TextBoxFor(m => m.Department, new {@class = "form-control", @placeholder = "Department Name"})
-        @Html.ValidationMessageFor(m => m.Department, "", new {@class = "text-danger"})
-    </div>
     <button type="submit" class="btn btn-primary">Register</button>
 
     <div class="mb-3">

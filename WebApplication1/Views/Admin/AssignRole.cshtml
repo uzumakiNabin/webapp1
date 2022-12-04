@@ -1,7 +1,33 @@
-﻿
+﻿@model WebApplication1.Models.AssignRole
+
 @{
-    ViewData["Title"] = "Assign Role";
+    ViewData["Title"] = "Assign Role to User";
 }
 
-<h1>AssignRole</h1>
+<div>
+    <div class="card-title">
+        <h3>Assign Role to User</h3>
+    </div>
+    @using (Html.BeginForm("AssignRole", "Admin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+        @Html.TextBoxFor(m => m.AssignId, new {@Value = "0", @type = "number", @disabled = true, @hidden = true})
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.UserName, "Username", new {@class = "form-label"})
+            @Html.TextBoxFor(m => m.UserName, new {@class = "form-control", @placeholder = "Enter Username"})
+            @Html.ValidationMessageFor(m => m.UserName, "", new {@class = "text-danger"})
+        </div>
+        <div class="mb-3">
+            @Html.LabelFor(m => m.RoleName, "Role Name", new {@class = "form-label"})
+            @Html.TextBoxFor(m => m.RoleName, new {@class = "form-control", @placeholder = "Enter Role Name"})
+            @Html.ValidationMessageFor(m => m.RoleName, "", new {@class = "text-danger"})
+        </div>
+
+        <button type="submit" class="btn btn-primary">Assign</button>
+    }
+</div>
 

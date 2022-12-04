@@ -1,10 +1,13 @@
-﻿@model WebApplication1.Models.CreateDepartment
+﻿@model WebApplication1.Models.Department
 
 @{
     ViewData["Title"] = "Create Department";
 }
 
 <div>
+    <div class="card-title">
+        <h3>Create Department</h3>
+    </div>
     @using (Html.BeginForm("CreateRole", "Admin", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
