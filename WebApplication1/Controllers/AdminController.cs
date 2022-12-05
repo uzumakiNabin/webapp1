@@ -159,7 +159,7 @@ namespace WebApplication1.Controllers
                 string DeptName = dept.DepartmentName.Trim();
                 if (DeptName.Length > 0)
                 {
-                    var ExistingDept = await _userContext.Departments.Where(d => d.DepartmentName == DeptName).FirstOrDefault();
+                    Department ExistingDept = _userContext.Departments.Where(d => d.DepartmentName == DeptName).FirstOrDefault();
                     if(ExistingDept != null)
                     {
                         ModelState.AddModelError(String.Empty, "Department already exists. Try another.");
@@ -235,7 +235,7 @@ namespace WebApplication1.Controllers
                 if (userName.Length > 0 && deptName.Length > 0)
                 {
                     IdentityUser user = await _userManager.FindByNameAsync(userName);
-                    if (user != null && await _userContext.Departments.Where(d => d.DepartmentName == deptName).FirstOrDefault() != null)
+                    if (user != null && _userContext.Departments.Where(d => d.DepartmentName == deptName).FirstOrDefault() != null)
                     {
                         Claim claim = new Claim("Department", deptName);
                         var result = await _userManager.AddClaimAsync(user, claim);

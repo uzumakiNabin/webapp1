@@ -55,7 +55,13 @@ namespace WebApplication1.Controllers
                         return View(signin);
                     }
                     */
-                    return RedirectToAction("Index", "Home");
+                    IdentityUser user = await _userManager.FindByNameAsync(login.UserName);
+                    List<string> Roles = await _userManager.GetRolesAsync(user) as List<string>;
+                    if (Roles.Contains("Admin"))
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    return RedirectToAction("UploadDocument", "Upload");
                 }
                 else
                 {
@@ -98,7 +104,7 @@ namespace WebApplication1.Controllers
                     await _userManager.AddClaimAsync(user, claim);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Dashboard", "Home");
+                        return RedirectToAction("Login", "User");
                     }
                     foreach(var err in result.Errors)
                     {

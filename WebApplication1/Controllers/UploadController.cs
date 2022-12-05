@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Helper;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication1.Controllers
 {
@@ -20,24 +21,36 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult UploadDocument()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<ActionResult> UploadDocument(DocumentModel model, IFormFile file)
+        [Authorize]
+        public async Task<ActionResult> UploadDocument(IFormFile file)
         {
             UploadHelper helper = new UploadHelper(_configuration);
-            if (file != null)
+            DocumentModel model = new DocumentModel();
+            try
             {
-                string folder = "NepalLife\\WebApplication1\\WebApplication1\\Document";
-                model.DocURL = await helper.UploadImage(folder, file);
+                if (file != null)
+                {
+                    string folder = "NepalLife\\WebApplication1\\WebApplication1\\Document";
+                    model.DocURL = await helper.UploadImage(folder, file);
 
+                }
+                await _dbContext.Documents.AddRangeAsync(model);
+                _dbContext.SaveChanges();
+                ViewBag.Message = "Successfully Uploaded";
             }
-            await _dbContext.AddRangeAsync(model);
+            catch(Exception ex)
+            {
+                ViewBag.Message = "Upload failed. Try again.";
+            }
 
-            return Ok();
+            return View();
         }
     }
 }
