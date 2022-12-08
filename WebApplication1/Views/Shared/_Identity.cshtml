@@ -4,19 +4,16 @@
 
 @if (loggedIn)
 {
-    <li class="nav-item">
-        <label>Welcome, @User.Identity.Name <br /> (@User.Claims.FirstOrDefault(x => x.Type == "Department"))</label>
+    <li class="nav-item d-none d-sm-inline-block">
+        <p class="nav-link text-dark mb-0">@User.Identity.Name (@User.Claims.FirstOrDefault(x => x.Type == "Department"))</p>
     </li>
-    <li class="nav-item">
+    <li class="nav-item d-none d-sm-inline-block">
         <a class="nav-link text-dark" asp-controller="User" asp-action="Logout">Logout</a>
     </li>
 }
 else
 {
-    <li class="nav-item">
+    <li class="nav-item d-none d-sm-inline-block">
         <a class="nav-link text-dark" asp-controller="User" asp-action="Login">Login</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-controller="User" asp-action="Register">Register</a>
     </li>
 }

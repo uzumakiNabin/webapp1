@@ -99,6 +99,16 @@ namespace WebApplication1.Controllers
                         }
                         return View(register);
                     }
+                    if(!await _roleManager.RoleExistsAsync("Admin"))
+                    {
+                        var roleRes = await _roleManager.CreateAsync(new IdentityRole { Name = "Admin"});
+                        if (!roleRes.Succeeded)
+                        {
+                            ModelState.AddModelError(String.Empty, "Failed to register user as admin");
+                            return View(register);
+                        }
+                    }
+                    await _userManager.AddToRoleAsync(user, "Admin");
                     if (register.DepartmentName != null)
                     {
                         var claim = new Claim("Department", register.DepartmentName);

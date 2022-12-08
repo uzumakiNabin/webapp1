@@ -1,16 +1,26 @@
 ﻿@model WebApplication1.Models.Login
 @{
+    Layout = "";
     ViewData["Title"] = "Login Page";
 }
 
 @section Styles {
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <link rel="stylesheet" href="~/dist/css/adminlte.css">
+
 }
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - WebApplication1</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <link rel="stylesheet" href="~/dist/css/adminlte.css">
+    </head>
     <style>
-        .login-page-container{
+        .login-page-container {
             -ms-flex-align: center;
             align-items: center;
             display: -ms-flexbox;
@@ -22,57 +32,59 @@
             justify-content: center;
         }
     </style>
-    <div class="login-page-container">
-        <div class="login-box">
-            <div class="login-logo">
-                <p>Login</p>
-            </div>
-            <div class="card">
-                <div class="card-body login-card-body">
-                    <p class="login-box-msg">Login to start your session</p>
-                @using (Html.BeginForm("Login", "User", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-                    <div class="input-group mb-3">
-                        @Html.TextBoxFor(m => m.UserName, new {@class = "form-control", @placeholder = "Enter your username"})
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+    <body>
+        <div class="login-page-container">
+            <div class="login-box">
+                <div class="login-logo">
+                    <p>Login</p>
+                </div>
+                <div class="card">
+                    <div class="card-body login-card-body">
+                        <p class="login-box-msg">Login to start your session</p>
+                    @using (Html.BeginForm("Login", "User", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                        <div class="input-group mb-3">
+                            @Html.TextBoxFor(m => m.UserName, new {@class = "form-control", @placeholder = "Enter your username"})
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        @Html.ValidationMessageFor(m => m.UserName, "", new {@class = "text-danger"})
-                    </div>
-                    <div class="input-group mb-3">
-                        @Html.PasswordFor(m => m.Password, new {@class = "form-control", @placeholder = "Enter your password"})
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                        <div class="mb-3">
+                            @Html.ValidationMessageFor(m => m.UserName, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="input-group mb-3">
+                            @Html.PasswordFor(m => m.Password, new {@class = "form-control", @placeholder = "Enter your password"})
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.LabelFor(m => m.RememberMe, "Remember Me", new {@class = "form-label"})
+                        <div class="mb-3">
+                            @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="icheck-primary">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe, "Remember Me", new {@class = "form-label"})
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-primary btn-block">Login</button>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
-                        </div>
-                    </div>
-                }
+                    }
 
-                <p class="mb-1 mt-3">
-                    @Html.ActionLink("I forgot my password", "ForgotPassword", "User")
-                </p>
+                    <p class="mb-1 mt-3">
+                        @Html.ActionLink("I forgot my password", "ForgotPassword", "User")
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</body>

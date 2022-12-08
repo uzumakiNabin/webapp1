@@ -20,6 +20,8 @@ namespace WebApplication1.Controllers
             _roleManager = roleManager;
             _userContext = dbaseContext;
         }
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View();
