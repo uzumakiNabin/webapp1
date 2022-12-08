@@ -4,29 +4,65 @@
     ViewData["Title"] = "Create Department";
 }
 
-<div>
-    <div class="card-title">
-        <h3>Create Department</h3>
+@section Styles {
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="~/dist/css/adminlte.css">
+}
+
+    <style>
+        .page-container {
+            -ms-flex-align: center;
+            align-items: center;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            height: 100%;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+    </style>
+    <div class="page-container">
+        <div class="login-box">
+            <div class="login-logo">
+                <p>Assign Department</p>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <p class="login-box-msg">Assign user to department</p>
+                @using (Html.BeginForm("CreateDepartment", "Admin", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+                    @Html.TextBoxFor(m => m.DepartmentId, new {@Value = "0", @type = "number", @disabled = true, @hidden = true})
+
+                    @Html.LabelFor(m => m.DepartmentName, "Department", new {@class = "form-label"})
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(m => m.DepartmentName, new {@class = "form-control", @placeholder = "Enter department name"})
+                    </div>
+                    <div class="mb-3">
+                        @Html.ValidationMessageFor(m => m.DepartmentName, "", new {@class = "text-danger"})
+                    </div>
+
+                    @Html.LabelFor(m => m.Description, "Description", new {@class = "form-label"})
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(m => m.Description, new {@class = "form-control", @placeholder = "Description about this department"})
+                    </div>
+                    <div class="mb-3">
+                        @Html.ValidationMessageFor(m => m.Description, "", new {@class = "text-danger"})
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Create</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
-    @using (Html.BeginForm("CreateRole", "Admin", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-
-        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-
-        @Html.TextBoxFor(m => m.DepartmentId, new {@Value = "0", @type = "number", @disabled = true, @hidden = true})
-
-        <div class="mb-3">
-            @Html.LabelFor(m => m.DepartmentName, "Department Name", new {@class = "form-label"})
-            @Html.TextBoxFor(m => m.DepartmentName, new {@class = "form-control", @placeholder = "Enter Department Name"})
-            @Html.ValidationMessageFor(m => m.DepartmentName, "", new {@class = "text-danger"})
-        </div>
-        <div class="mb-3">
-            @Html.LabelFor(m => m.Description, "Description", new {@class = "form-label"})
-            @Html.TextBoxFor(m => m.Description, new {@class = "form-control", @placeholder = "Description about this department"})
-            @Html.ValidationMessageFor(m => m.Description, "", new {@class = "text-danger"})
-        </div>
-
-        <button type="submit" class="btn btn-primary">Add</button>
-    }
 </div>
+

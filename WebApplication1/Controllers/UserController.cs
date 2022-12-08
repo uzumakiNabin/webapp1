@@ -99,9 +99,11 @@ namespace WebApplication1.Controllers
                         }
                         return View(register);
                     }
-
-                    var claim = new Claim("Department", register.DepartmentName);
-                    await _userManager.AddClaimAsync(user, claim);
+                    if (register.DepartmentName != null)
+                    {
+                        var claim = new Claim("Department", register.DepartmentName);
+                        await _userManager.AddClaimAsync(user, claim);
+                    }
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Login", "User");
@@ -125,7 +127,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Login");
+            return RedirectToAction("Login", "User");
         }
     }
 }
